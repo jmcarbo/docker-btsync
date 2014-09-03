@@ -1,0 +1,10 @@
+# Usage
+
+run ./master in first docker node
+
+run ./slave in the rest of docker nodes
+
+# Inspect data volume
+
+run ./inspect in any node. Look into /data folder
+

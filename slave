@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ $# -eq 0 ]
+then
+  echo "usage: slave <ID>"
+  echo "You must suply a btsync docker master ID"
+  exit 1
+fi
+VID=$(docker run -d jmcarbo/btsync $1)
+echo "New btsync docker slave: $VID" 

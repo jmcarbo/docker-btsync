@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ $# -eq 0 ]
+then
+  echo "Selecting first docker btsync container"
+  VID=$(docker ps | grep jmcarbo/btsync | awk '{ print $1; }')
+else
+  VID=$1
+fi
+
+docker run -t -i --volumes-from $VID ubuntu bash
