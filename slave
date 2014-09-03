@@ -5,5 +5,5 @@ then
   echo "You must suply a btsync docker master ID"
   exit 1
 fi
-VID=$(docker run -d -P jmcarbo/btsync $1)
+VID=$(docker run -d jmcarbo/btsync $1)
 echo "New btsync docker slave: $VID" 
