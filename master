@@ -1,4 +1,4 @@
 #!/bin/bash
-VID=$(docker run -d jmcarbo/btsync)
+VID=$(docker run -d -P jmcarbo/btsync)
 LOG=$(docker logs $VID 2>/dev/null | head -n 1)
 echo "New btsync repo ID: " ${LOG##* };
