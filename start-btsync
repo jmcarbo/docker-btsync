@@ -26,7 +26,8 @@ configBTSync() {
               \"use_tracker\": true,
               \"use_dht\": false,
               \"search_lan\": true,
-              \"use_sync_trash\": true
+              \"use_sync_trash\": true,
+              \"known_hosts\": [ \"172.20.5.225:55555\", \"172.20.4.43:55555\", ] 
           }
       ]
   }" 
