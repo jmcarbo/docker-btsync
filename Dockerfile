@@ -2,8 +2,8 @@
 FROM ubuntu:14.04
 MAINTAINER Joan Marc Carbo Arnau <jmcarbo@gmail.com>
 RUN apt-get update && apt-get install -y curl
-RUN curl -o /usr/bin/btsync.tar.gz https://download-cdn.getsyncapp.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz
-RUN cd /usr/bin && tar -xzvf btsync.tar.gz && rm btsync.tar.gz
+ADD http://download.getsyncapp.com/endpoint/btsync/os/linux-x64/track/stable /tmp/btsync.tar.gz
+RUN cd /usr/bin && tar -xzvf /tmp/btsync.tar.gz && rm /tmp/btsync.tar.gz
 RUN mkdir -p /btsync/.sync
 RUN mkdir -p /var/run/btsync
 RUN mkdir -p /btsync/.sync
