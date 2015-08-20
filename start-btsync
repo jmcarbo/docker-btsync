@@ -26,7 +26,7 @@ configBTSync() {
               \"use_tracker\": true,
               \"use_dht\": false,
               \"search_lan\": true,
-              \"use_sync_trash\": false
+              \"use_sync_trash\": true
           }
       ]
   }" 
