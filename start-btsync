@@ -27,7 +27,7 @@ configBTSync() {
               \"use_dht\": false,
               \"search_lan\": true,
               \"use_sync_trash\": true,
-              \"known_hosts\": [ \"172.20.5.225:55555\", \"172.20.4.43:55555\" ] 
+              \"known_hosts\": [ \"btsync1:55555\", \"btsync2:55555\" ] 
           }
       ]
   }" 
