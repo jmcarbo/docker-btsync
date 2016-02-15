@@ -7,10 +7,17 @@ newSecret() {
 configBTSync() {
   local secret="$1"
   secret=${secret:-$(newSecret)} 
+  data_dir=${DATA_DIR:-/data} 
+  use_tracker=${USE_TRACKER:-true}
+  use_dht=${USE_DHT:-false}
+  use_relay_server=${USE_RELAY_SERVER:-true}
+  search_lan=${SEARCH_LAN:-true}
+  hostname=${HOSTNAME:-$(hostname)}
+  known_hosts=${KNOWN_HOSTS:-[ ]}
 
 
   echo "{
-      \"device_name\": \"Sync Server\",
+      \"device_name\": \"$hostname\",
       \"listening_port\": 55555,
       \"storage_path\": \"/btsync/.sync\",
       \"pid_file\": \"/var/run/btsync/btsync.pid\",
@@ -21,13 +28,13 @@ configBTSync() {
       \"shared_folders\": [
           {
               \"secret\": \"$secret\",
-              \"dir\": \"/data\",
-              \"use_relay_server\": true,
-              \"use_tracker\": true,
-              \"use_dht\": false,
-              \"search_lan\": true,
+              \"dir\": \"$data_dir\",
+              \"use_relay_server\": $use_relay_server,
+              \"use_tracker\": $use_tracker,
+              \"use_dht\": $use_dht,
+              \"search_lan\": $search_lan,
               \"use_sync_trash\": true,
-              \"known_hosts\": [ \"btsync1:55555\", \"btsync2:55555\" ] 
+              \"known_hosts\": $known_hosts 
           }
       ]
   }" 
