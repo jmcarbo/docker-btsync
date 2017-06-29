@@ -3,4 +3,4 @@ build:
 
 download:
 	mkdir -p ./bin
-	curl -o ./bin/btsync.tar.gz http://download-lb.utorrent.com/endpoint/btsync/os/linux-x64/track/stable
+	curl -o ./bin/sync.tar.gz https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz

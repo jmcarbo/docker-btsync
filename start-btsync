@@ -1,7 +1,7 @@
 #!/bin/bash
 
 newSecret() {
-  echo "$(btsync --generate-secret)"
+  echo "$(rslsync --generate-secret)"
 }
 
 configBTSync() {
@@ -19,8 +19,8 @@ configBTSync() {
   echo "{
       \"device_name\": \"$hostname\",
       \"listening_port\": 55555,
-      \"storage_path\": \"/btsync/.sync\",
-      \"pid_file\": \"/var/run/btsync/btsync.pid\",
+      \"storage_path\": \"/tmp/btsync/.sync\",
+      \"pid_file\": \"/tmp/btsync/btsync.pid\",
       \"check_for_updates\": false,
       \"use_upnp\": false,
       \"download_limit\": 0,
@@ -41,20 +41,21 @@ configBTSync() {
 }
 
 main() {
-	set -eo pipefail
-	case "$1" in
-	new-secret)         
+  set -eo pipefail
+  case "$1" in
+  new-secret)         
     newSecret
     ;;
-	test)                  
+  test)                  
     shift
-    echo "Starting btsync with secret: $secret"
+    echo "Starting rslsync with secret: $secret"
     configBTSync "$@"
     ;;
   *)
-    echo $(configBTSync "$@") > /btsync/btsync.conf
-    grep secret /btsync/btsync.conf
-    btsync --config /btsync/btsync.conf --nodaemon
+    mkdir -p /tmp/btsync/.sync
+    echo $(configBTSync "$@") > /tmp/btsync/btsync.conf
+    grep secret /tmp/btsync/btsync.conf
+    rslsync --config /tmp/btsync/btsync.conf --nodaemon
     ;;
 	esac
 }
