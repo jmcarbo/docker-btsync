@@ -6,7 +6,12 @@ newSecret() {
 
 configBTSync() {
   local secret="$1"
-  secret=${secret:-$(newSecret)} 
+  if [ -f /run/secrets/btsync_secret ]; then
+    secret=$(cat /run/secrets/btsync_secret)
+  else
+    secret=${secret:-$(newSecret)}
+  fi
+   
   data_dir=${DATA_DIR:-/data} 
   use_tracker=${USE_TRACKER:-true}
   use_dht=${USE_DHT:-false}
